@@ -36,7 +36,11 @@ async function register(req, res) {
 
     // check if user already exist
     // Validate if user exist in our database
+<<<<<<< HEAD
     const oldUser = await User.findOne({ username });
+=======
+    const oldUser = await getByUsername( username );
+>>>>>>> efad38515e019268c56d82b131339bb41e116d7d
 
     if (oldUser) {
       return res.status(409).send("User Already Exist. Please Login");
