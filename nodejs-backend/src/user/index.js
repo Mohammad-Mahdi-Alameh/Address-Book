@@ -1,5 +1,6 @@
 const { Router } = require('express');
-const { get , login, register} = require('./controller/user');
+const { login, register} = require('./controller/AuthController');
+const { get } = require('./controller/UserController');
 const router = Router();
 
 router.get('/get',get);

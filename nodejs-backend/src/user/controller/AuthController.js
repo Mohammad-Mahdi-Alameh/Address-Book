@@ -1,28 +1,9 @@
-const { getUsers, getById, addUser, getByUsername } = require('../service');
+const { getUsers,  getByUsername } = require('../service');
 const User = require('../../../model/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const TOKEN_SECRET = process.env.TOKEN_SECRET || "";
 
-async function get(req, res) {
-  try {
-    console.log(req.query);
-
-    if (req.query.username) { 
-      const id = req.query.username;
-      const result = await getByUsername(id);
-      console.log('result of specific user =>', result);
-      return res.send(result);
-    }
-
-    const result = await getUsers();
-    console.log('result =>', result);
-
-    return res.send(result);
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 async function register(req, res) {
   try {
@@ -36,7 +17,7 @@ async function register(req, res) {
 
     // check if user already exist
     // Validate if user exist in our database
-    const oldUser = await User.findOne({ username });
+    const oldUser = await getByUsername( username );
 
     if (oldUser) {
       return res.status(409).send("User Already Exist. Please Login");
@@ -49,7 +30,7 @@ async function register(req, res) {
     const user = await User.create({
       first_name,
       last_name,
-      username, // sanitize: convert email to lowercase
+      username:username.toLowerCase(), 
       password: encryptedPassword
     });
 
@@ -93,7 +74,6 @@ async function login(req, res) {
 }
 
 module.exports = {
-  get,
   register,
   login,
 };

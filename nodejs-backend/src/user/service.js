@@ -8,23 +8,6 @@ async function getById(id) {
   return await User.findById(id);
 }
 
-async function addUser(body, hashPassword) {
-  const {
-    first_name,
-    last_name,
-    username,
-    password
-  } = body;
-
-  const user = new User({
-    first_name,
-    last_name,
-    username,
-    password: hashPassword,
-  });
-
-  return await user.save();
-}
 
 async function getByUsername(username) {
   return await User.findOne({
@@ -35,6 +18,5 @@ async function getByUsername(username) {
 module.exports = {
   getUsers,
   getById,
-  addUser,
   getByUsername,
 }
