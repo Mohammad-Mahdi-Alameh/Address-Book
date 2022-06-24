@@ -1,0 +1,17 @@
+const mongoose = require("mongoose");
+
+const contactSchema = new mongoose.Schema({
+  first_name: { required: true , type: String },
+  last_name: { required: true , type: String},
+  phonenumber: { required: true , type: String, unique: true },
+  email: { required: true , type: String, unique: true },
+  relationship_status: { required: true , type: String },
+  location : {},
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
+  created_at: {type: Date , default: Date.now}
+});
+
+module.exports = mongoose.model("Contact", contactSchema);
