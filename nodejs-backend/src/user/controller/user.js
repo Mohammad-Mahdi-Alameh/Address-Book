@@ -8,7 +8,7 @@ async function get(req, res) {
   try {
     console.log(req.query);
 
-    if (req.query.username) { // ?id=k1231 -> query paramet
+    if (req.query.username) { 
       const id = req.query.username;
       const result = await getByUsername(id);
       console.log('result of specific user =>', result);
@@ -36,11 +36,7 @@ async function register(req, res) {
 
     // check if user already exist
     // Validate if user exist in our database
-<<<<<<< HEAD
     const oldUser = await User.findOne({ username });
-=======
-    const oldUser = await getByUsername( username );
->>>>>>> efad38515e019268c56d82b131339bb41e116d7d
 
     if (oldUser) {
       return res.status(409).send("User Already Exist. Please Login");
@@ -76,10 +72,28 @@ async function register(req, res) {
   // Our register logic ends here
 }
 
+async function login(req, res) {
+  try {
+    const user = await getByUsername(req.body.username);
+    if (!user) return res.status(400).send('invalid credentials');
 
+    const validPassword = await bcrypt.compare(req.body.password, user.password);
+    if (!validPassword) return res.status(400).send('invalid credentials');
+
+    const token = jwt.sign(
+      {_id: user._id, first_name: user.first_name,last_name: user.last_name, username: user.username},
+      TOKEN_SECRET
+    );
+
+    return res.header('auth-token', token).send(token);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+}
 
 module.exports = {
   get,
   register,
-
+  login,
 };
