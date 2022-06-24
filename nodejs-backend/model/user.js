@@ -6,6 +6,11 @@ const userSchema = new mongoose.Schema({
   username: { required: true ,type: String, unique: true },
   password: { required: true ,type: String },
   created_at: {type: Date , default: Date.now},
+  contacts: [{
+    required: true ,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Contact"
+  }],
   token: {type: String }
 });
 

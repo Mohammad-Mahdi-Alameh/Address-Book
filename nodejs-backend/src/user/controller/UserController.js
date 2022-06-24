@@ -5,8 +5,8 @@ async function get(req, res) {
     console.log(req.query);
 
     if (req.query.username) { 
-      const id = req.query.username;
-      const result = await getByUsername(id);
+      const username = req.query.username;
+      const result = await getByUsername(username);
       console.log('result of specific user =>', result);
       return res.send(result);
     }

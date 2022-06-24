@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const contactSchema = new mongoose.Schema({
   first_name: { required: true , type: String },
   last_name: { required: true , type: String},
-  phonenumber: { required: true , type: String, unique: true },
-  email: { required: true , type: String, unique: true },
+  phonenumber: { required: true , type: String },
+  email: { required: true , type: String },
   relationship_status: { required: true , type: String },
   location : { latitude :{ required: true , type: String } , longitude :{ required: true , type: String }},
-  category: {
+  user: {
     required: true ,
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
