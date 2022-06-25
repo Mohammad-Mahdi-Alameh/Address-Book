@@ -1,4 +1,4 @@
-const { getContacts } = require('../service');
+const { getContacts ,addContact } = require('../service');
 const User = require('../../../model/User');
 
 async function get(req, res) {
