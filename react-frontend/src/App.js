@@ -15,10 +15,17 @@ function App() {
         console.log(err);
       }
     };
-  
-  return (
-<><LoginForm/></>
-  );
+
+  if(checkToken)
+    
+    return (<><LoginForm/></>);
+
+  else
+
+    return(<></>);
+
+    
+
 }
 
 export default App;
