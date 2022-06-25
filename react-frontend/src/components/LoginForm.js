@@ -19,6 +19,16 @@ const LoginForm = () => {
             alert("Wrong username or Password !");
           
         }
+
+        const signup = async (survey) => {
+            const res = await fetch("http://localhost:8080/api/user/register", {
+              method: "POST",
+              body: survey,
+            });
+            const data = await res.json();
+            localStorage.setItem("token",data.token);
+            localStorage.setItem("user_id",data.user_id);
+          };
     return(
 <form className="login-form" >
     <div className="form-control">
