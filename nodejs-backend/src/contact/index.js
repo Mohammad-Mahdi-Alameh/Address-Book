@@ -1,11 +1,12 @@
 const { Router } = require('express');
-const { get , add , edit , getLocation} = require('./controller/ContactController');
+const { get , add , edit ,remove , getLocation} = require('./controller/ContactController');
 // const { getContacts } = require('./service');
 const router = Router();
 
 router.get('/get',get);
-// router.post('/add',add);
+router.post('/add',add);
 // router.post('/edit',edit);
+// router.post('/remove',remove);
 // router.get('/getLocation',getLocation);
 
 
