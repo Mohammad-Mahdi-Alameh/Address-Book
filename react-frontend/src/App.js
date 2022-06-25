@@ -1,5 +1,6 @@
 import './App.css';
 import LoginForm from "./components/LoginForm";
+import ViewContacts from "./components/ViewContacts";
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
 
   else
 
-    return(<></>);
+    return(<><ViewContacts user_id={user_id}/></>);
 
     
 
