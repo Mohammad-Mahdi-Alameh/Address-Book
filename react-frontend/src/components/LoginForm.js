@@ -1,6 +1,24 @@
 import React from "react";
 import input from "./Input";
-const LoginForm = ({  }) => {
+const LoginForm = () => {
+
+    const login = async (username_pass) => {
+        const res = await fetch("http://localhost:8080/api/user/login", {
+          method: "POST",
+       
+          body: username_pass,
+        });
+        const data = await res.json();
+        console.log(data.success);
+        if(data.success === true){
+            localStorage.setItem("token",data.token);
+            localStorage.setItem("user_id",data.user_id);
+            // alert("Hi Admin !");
+            
+        }else
+            alert("Wrong username or Password !");
+          
+        }
     return(
 <form className="login-form" >
     <div className="form-control">
