@@ -50,34 +50,42 @@ async function register(req, res) {
   } catch (err) {
     console.log(err);
   }
-  // Our register logic ends here
 }
 
 async function login(req, res) {
+
   try {
-    const user = await getByUsername(req.body.username);
-    if (!user) return res.status(400).send('Incorrect Username or Password !');
+    // Get user input
+    const { username, password } = req.body;
 
-    const validPassword = await bcrypt.compare(req.body.password, user.password);
-    if (!validPassword) return res.status(400).send('Incorrect Username or Password !');
+    // Validate user input
+    if (!(username && password)) {
+      res.status(400).send("All input is required");
+    }
+    // Validate if user exist in our database
+    const user = await User.findOne({ username });
 
-    const token = jwt.sign(
-      {_id: user._id, first_name: user.first_name,last_name: user.last_name, username: user.username},
-      TOKEN_SECRET
-    );
-    let data={
-      "success":true,
-      "token":token,
-      "user_id":user._id
-     }
-    return res.header('auth-token', token).send(data);
-    // return res.header('auth-token', token).send(user._id);
-    // return  res.status(201).json(user._id);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    if (user && (await bcrypt.compare(password, user.password))) {
+      // Create token
+      const token = jwt.sign(
+        { user_id: user._id, username },
+        process.env.TOKEN_SECRET,
+        {
+          expiresIn: "2h",
+        }
+      );
+
+      // save user token
+      user.token = token;
+
+      // user
+      res.status(200).json(user);
+    }
+    res.status(400).send("Invalid Credentials");
+  } catch (err) {
+    console.log(err);
   }
-}
+};
 
 module.exports = {
   register,
