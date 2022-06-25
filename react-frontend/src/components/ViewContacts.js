@@ -1,5 +1,6 @@
 import React from "react";
 import Contact from "./Contact";
+import { useEffect,useState } from "react";
 const ViewContacts = ({ user_id }) => {
   const [contacts, setContacts] = useState([]);
   const fetchContacts  = async () => {

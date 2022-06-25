@@ -28,11 +28,11 @@ function App() {
     <BrowserRouter>
       {/* Nav */}
       <Routes>
-           <Route path="/" element={<ViewContacts user_id={user_id}/>}></Route>
+           <Route path="/" element={<ViewContacts user_id={localStorage.getItem("user_id")}/>}></Route>
       </Routes>
-      <Routes>
+      {/* <Routes>
            <Route path="/get_info" element={<GetInfo />}></Route>
-      </Routes>
+      </Routes> */}
 
     </BrowserRouter></>);
 
