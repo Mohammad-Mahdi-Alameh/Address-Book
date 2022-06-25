@@ -66,6 +66,7 @@ async function login(req, res) {
       TOKEN_SECRET
     );
     let data={
+      "success":true,
       "token":token,
       "user_id":user._id
      }
