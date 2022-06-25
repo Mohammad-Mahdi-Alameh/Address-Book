@@ -1,6 +1,7 @@
 import './App.css';
 import LoginForm from "./components/LoginForm";
 import ViewContacts from "./components/ViewContacts";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
 
@@ -23,7 +24,17 @@ function App() {
 
   else
 
-    return(<><ViewContacts user_id={user_id}/></>);
+    return(<>
+    <BrowserRouter>
+      {/* Nav */}
+      <Routes>
+           <Route path="/" element={<ViewContacts user_id={user_id}/>}></Route>
+      </Routes>
+      <Routes>
+           <Route path="/get_info" element={<GetInfo />}></Route>
+      </Routes>
+
+    </BrowserRouter></>);
 
     
 

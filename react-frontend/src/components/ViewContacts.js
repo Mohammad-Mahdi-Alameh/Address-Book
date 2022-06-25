@@ -1,4 +1,5 @@
 import React from "react";
+import Contact from "./Contact";
 const ViewContacts = ({ user_id }) => {
   const [contacts, setContacts] = useState([]);
   const fetchContacts  = async () => {
@@ -24,7 +25,8 @@ const ViewContacts = ({ user_id }) => {
       <Contact
         key={contact.id}
         contact={contact}
-        getInfo={getInfo}/>
+        // getInfo={getInfo}
+        />
     ))}
       </>
 );
