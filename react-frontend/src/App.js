@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
+import LoginForm from "./components/LoginForm";
 
 function App() {
-  
+
      //Checking if the token exists
      const checkToken =  () => {
       try {
@@ -17,7 +17,7 @@ function App() {
     };
   
   return (
-<></>
+<><LoginForm/></>
   );
 }
 
