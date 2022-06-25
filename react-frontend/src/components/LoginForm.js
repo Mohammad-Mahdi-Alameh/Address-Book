@@ -29,6 +29,12 @@ const LoginForm = () => {
             localStorage.setItem("token",data.token);
             localStorage.setItem("user_id",data.user_id);
           };
+
+          const logout = async () => {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user_id");
+            // window.location.reload(false);
+          };
     return(
 <form className="login-form" >
     <div className="form-control">
