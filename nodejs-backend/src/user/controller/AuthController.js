@@ -56,17 +56,22 @@ async function register(req, res) {
 async function login(req, res) {
   try {
     const user = await getByUsername(req.body.username);
-    if (!user) return res.status(400).send('invalid credentials');
+    if (!user) return res.status(400).send('Incorrect Username or Password !');
 
     const validPassword = await bcrypt.compare(req.body.password, user.password);
-    if (!validPassword) return res.status(400).send('invalid credentials');
+    if (!validPassword) return res.status(400).send('Incorrect Username or Password !');
 
     const token = jwt.sign(
       {_id: user._id, first_name: user.first_name,last_name: user.last_name, username: user.username},
       TOKEN_SECRET
     );
-
-    return res.header('auth-token', token).send(token);
+    let data={
+      "token":token,
+      "user_id":user._id
+     }
+    return res.header('auth-token', token).send(data);
+    // return res.header('auth-token', token).send(user._id);
+    // return  res.status(201).json(user._id);
   } catch (error) {
     console.log(error);
     res.status(500).send(error);
