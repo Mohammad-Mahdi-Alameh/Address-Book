@@ -8,31 +8,10 @@ const Navbar = () => {
     <header className="header">
         <div className="icon">
             <img src={Logo} alt=""/>
-            <h1>Surveys Builder</h1>
+            <h1>Address Book</h1>
         </div>
         
-        {/* <div className="icon">
-        {location.pathname === "/" && (
-        <Button
-          color={showCreateSurvey ? "red" : "green"}
-          text={showCreateSurvey ? "Close" : "Create Survey"}
-          onClick={onCreateSurvey}
-        />
-       )}
-        {location.pathname === "/" && (
-        <Button
-          color={"red" }
-          text={"Logout"}
-          onClick={logout}
-        />
-       )}</div>
-       {location.pathname === "/create_survey's_questions" && (
-        <Button
-          color={"red" }
-          text={"Logout"}
-          onClick={logout}
-        />
-       )} */}
+      
     </header>
   );
 };
