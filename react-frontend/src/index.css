@@ -9,6 +9,16 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+.container {
+  width: 90vw;
+  margin: 7px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 3px solid rgb(0, 0, 0);
+  padding: 30px;
+  border-radius: 5px;
+  
+}
 
 .btn {
   display: inline-block;
@@ -108,7 +118,6 @@ form {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 2vh;
   margin-bottom: 1vh;
 }
 

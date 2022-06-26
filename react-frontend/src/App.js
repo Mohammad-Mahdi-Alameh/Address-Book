@@ -49,6 +49,7 @@ function App() {
 
 
   return (<><BrowserRouter>
+   <div className="container">
   <Navbar/>
     <Routes>
       <Route path="/" element={<>
@@ -65,6 +66,7 @@ function App() {
     <Routes>
       <Route path="/signup" element={<SignupForm />}></Route>
     </Routes>
+    </div>
   </BrowserRouter></>);
 }
 // else
