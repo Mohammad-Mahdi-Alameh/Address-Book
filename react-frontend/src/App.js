@@ -2,6 +2,7 @@ import './App.css';
 import LoginForm from "./components/LoginForm";
 import Contacts from "./components/Contacts";
 import SignupForm from './components/SignupForm';
+import AddContact from './components/AddContact';
 import Navbar from './components/Navbar';
 import { BrowserRouter, Routes, Route,useNavigate } from "react-router-dom";
 import Contact from './components/Contact';
@@ -10,16 +11,19 @@ import { useState, useEffect } from 'react';
 function App() {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const[token,setToken]=useState(false);
 
   //Checking if the token exists
   const checkToken = () => {
     try {
       let token = localStorage.getItem("token");
-      if (token)
+      if (token){
+        setToken(true);
         return true;
-      else
+      }else{
+        setToken(false);
         return false;
-    } catch (err) {
+    }} catch (err) {
       console.log(err);
     }
   };
@@ -62,9 +66,8 @@ function App() {
           )
         }</>}>
       </Route>
-    </Routes>
-    <Routes>
-      <Route path="/signup" element={<SignupForm />}></Route>
+      <Route path="user/signup" element={<SignupForm />}></Route>
+      <Route path="user/add_contact" element={<AddContact />}></Route>
     </Routes>
     </div>
   </BrowserRouter></>);

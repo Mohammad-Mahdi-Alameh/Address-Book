@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import input from "./Input";
 import { useNavigate,Link} from "react-router-dom";
 
 const LoginForm = () => {
@@ -46,6 +45,7 @@ const LoginForm = () => {
         console.log(response.data);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user_id", response.data._id);
+        window.location.reload(false);
       })
       .catch(function (error) {
         alert("Wrong Username or password !")
@@ -81,7 +81,7 @@ const LoginForm = () => {
 
       </div>
 
-      <Link to={"/signup"}>Create Account</Link>
+      <Link to={"user/signup"}>Create Account</Link>
       <input type={"submit"} value="Login" className="btn btn-block" />
     </form>
     </>);

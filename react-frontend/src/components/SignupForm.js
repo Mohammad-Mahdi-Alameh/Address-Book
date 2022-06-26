@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import input from "./Input";
 const SignupForm = () => {
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
@@ -36,6 +35,7 @@ const SignupForm = () => {
         console.log(response.data);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user_id", response.data._id);
+        window.location.reload(false);
       })
       .catch(function (error) {
         alert("Username exist ! Please Login !")
@@ -44,7 +44,6 @@ const SignupForm = () => {
     setLastName("");  
     setUsername("");
     setPassword("");
-    // setShowCreateSurvey(!showCreateSurvey);
   };
   return (
     <>
