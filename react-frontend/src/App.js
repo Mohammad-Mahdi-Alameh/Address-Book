@@ -4,6 +4,7 @@ import Contacts from "./components/Contacts";
 import SignupForm from './components/SignupForm';
 import AddContact from './components/AddContact';
 import Navbar from './components/Navbar';
+import ViewContact from './components/ViewContact';
 import { BrowserRouter, Routes, Route,useNavigate } from "react-router-dom";
 import Contact from './components/Contact';
 import { useState, useEffect } from 'react';
@@ -68,6 +69,7 @@ function App() {
       </Route>
       <Route path="user/signup" element={<SignupForm />}></Route>
       <Route path="user/add_contact" element={<AddContact />}></Route>
+      <Route path="/get_info" element={<ViewContact />}></Route>
     </Routes>
     </div>
   </BrowserRouter></>);
