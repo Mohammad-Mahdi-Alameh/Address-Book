@@ -3,7 +3,7 @@ import LoginForm from "./components/LoginForm";
 import Contacts from "./components/Contacts";
 import SignupForm from './components/SignupForm';
 import Navbar from './components/Navbar';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route,useNavigate } from "react-router-dom";
 import Contact from './components/Contact';
 import { useState, useEffect } from 'react';
 
@@ -37,7 +37,7 @@ function App() {
       return [];
     }
   };
-
+ 
   useEffect(() => {
     const getContacts = async () => {
       const serverContacts = await fetchContacts();
@@ -50,7 +50,7 @@ function App() {
 
   return (<><BrowserRouter>
    <div className="container">
-  <Navbar/>
+  <Navbar  />
     <Routes>
       <Route path="/" element={<>
         {

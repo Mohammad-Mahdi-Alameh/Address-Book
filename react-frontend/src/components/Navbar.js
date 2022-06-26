@@ -1,10 +1,17 @@
 import React from "react";
 import Logo from "../assets/logo1.jpg";
 import Button from "./Button";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const Navbar = (Logout, AddContact) => {
+const Navbar = () => {
     const location = useLocation();
+    const navigate = useNavigate();
+    const logout = async () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_id");
+        window.location.reload(false);
+    };
+
     return (
         <header className="header">
             <div className="icon">
@@ -13,18 +20,18 @@ const Navbar = (Logout, AddContact) => {
             </div>
 
             <div className="icon">
-                {location.pathname === "/" && (
+                {/* {location.pathname === "/" && (
                     <Button
                         color={"green"}
                         text={"Add Contact"}
-                        onClick={AddContact}
+                        onClick={addContact}
                     />
-                )}
+                )} */}
                 {location.pathname === "/" && (
                     <Button
                         color={"red"}
                         text={"Logout"}
-                        onClick={Logout}
+                        onClick={logout}
                     />
                 )}
             </div>

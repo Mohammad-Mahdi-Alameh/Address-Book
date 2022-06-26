@@ -34,11 +34,7 @@ const LoginForm = () => {
   //   localStorage.setItem("user_id", data.user_id);
   // };
 
-  const logout = async () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user_id");
-    // window.location.reload(false);
-  };
+ 
   const onLogin = (e) => {
     e.preventDefault();
     if (!username || !password) {
