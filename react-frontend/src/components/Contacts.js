@@ -85,6 +85,30 @@ function filterphonenumber_includes(value){
     contact={filteredContact}
     />)));
 }
+function filteremail_start(value){
+  return(
+  contacts.filter(contact => contact.email.startsWith(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filteremail_end(value){
+  return(
+  contacts.filter(contact => contact.email.endsWith(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filteremail_includes(value){
+  return(
+  contacts.filter(contact => contact.email.includes(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
     return(<> 
      {filterFirstName_includes("t2")}
     
