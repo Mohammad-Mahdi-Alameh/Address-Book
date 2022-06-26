@@ -1,5 +1,17 @@
-const { getContacts ,addContact } = require('../service');
+const { getContacts ,addContact,getbyid } = require('../service');
 const User = require('../../../model/User');
+
+async function getByID(req, res) {
+  try {
+      const id = req.query.id;
+      const result = await getbyid(id);
+    console.log('result =>', result);
+
+    return res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 async function get(req, res) {
     try {
@@ -51,5 +63,6 @@ async function get(req, res) {
   
   module.exports = {
     get ,
-    add
+    add,
+    getByID
     };
