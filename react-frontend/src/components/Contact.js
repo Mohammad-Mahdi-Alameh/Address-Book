@@ -5,7 +5,7 @@ const Contact = ({ contact}) => {
     <div
     className={"contact"}
     onClick={() => {
-      navigate("/get_info?contact_id="+contact.id);
+      navigate("/get_info?contact_id="+contact._id);
 
 
     }}

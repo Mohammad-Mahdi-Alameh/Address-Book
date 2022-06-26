@@ -33,7 +33,7 @@ function App() {
       try {
         const res = await fetch("http://localhost:8080/api/contact/get?user="+localStorage.getItem("user_id"));
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         return data;
       } catch (err) {
         console.log(err);
