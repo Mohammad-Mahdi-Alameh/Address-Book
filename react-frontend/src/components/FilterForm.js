@@ -3,6 +3,10 @@ import { useState } from "react";
 import Contact from "./Contact";
 import Input from "./Input";
 const FilterForm = (contacts) => {
+    const [filterBy, setFilterBy] = useState("");
+    const [filterMethod, setFilterMethod] = useState("");
+    const [filterValue, setFilterValue] = useState("");
+    var filtered;
 
     function filterFirstName_start(value) {
         return (
@@ -173,36 +177,64 @@ const FilterForm = (contacts) => {
                     contact={filteredContact}
                 />)));
     }
+    const onFilter = (e) => {
+        e.preventDefault();
+        console.log(filterBy);
+        console.log(filterMethod);
+        console.log(filterValue);
+        if (!filterBy || !filterMethod || !filterValue) {
+          alert("Please fill missing fields !");
+          return;
+        }
+        if (filterBy === "First Name"){
+            if(filterMethod === "Starts With"){
+                filtered= filterFirstName_start(filterValue);
+                // console.log(x);
+                
+            }
+        }
+    
+        setFilterBy("");
+        setFilterMethod("");
+        setFilterValue("");
+      };
 
     return (<>
-        <form className="login-form" >
-        <label>Filter By : </label>
-        <select name="type">
-            <option value=""></option>
-            <option value="First Name">First Name</option>
-            <option value="Last Name">Last Name</option>
-            <option value="Phone  Number">Phone  Numbe</option>
-            <option value="Email">Email</option>
-            <option value="Relationship Status">Relationship Status</option>
-            <option value="longitude">longitude</option>
-            <option value="latitude">latitude</option>
+        <form className="login-form" onSubmit={onFilter}>
+            <label>Filter By : </label>
+            <select name="filterBy" onChange={(e) => {
+                setFilterBy(e.target.value);
+            }}>
+                <option value=""></option>
+                <option value="First Name">First Name</option>
+                <option value="Last Name">Last Name</option>
+                <option value="Phone  Number">Phone  Number</option>
+                <option value="Email">Email</option>
+                <option value="Relationship Status">Relationship Status</option>
+                <option value="longitude">longitude</option>
+                <option value="latitude">latitude</option>
 
-        </select>
-        <label>Criteria : </label>
-        <select name="type">
-            <option value=""></option>
-            <option value="Includes">Includes</option>
-            <option value="Starts With">Starts With</option>
-            <option value="Ends With">Ends With</option>
+            </select>
+            <label>Criteria : </label>
+            <select name="filterMethod" onChange={(e) => {
+                setFilterMethod(e.target.value);
+            }}>
+                <option value=""></option>
+                <option value="Includes">Includes</option>
+                <option value="Starts With">Starts With</option>
+                <option value="Ends With">Ends With</option>
 
-        </select>
-        <Input type={"text"} placeholder={"Enter value "}  name={"value"} label={"Value : "}/>
-        <input type={"submit"} value="Filter" className="btn btn-block" />
-        <input type={"button"} value="Reset" className="btn btn-block" />
+            </select>
+            <label>Value : </label>
+            <input type={"text"} placeholder={"Enter value "} name={"filterValue"} onChange={(e) => {
+                setFilterValue(e.target.value);
+            }}/>
+            <input type={"submit"} value="Filter" className="btn btn-block" />
+            <input type={"button"} value="Reset" className="btn btn-block" />
         </form>
 
 
-
+{filtered()}
     </>);
 }
 export default FilterForm;

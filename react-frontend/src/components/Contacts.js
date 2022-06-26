@@ -187,7 +187,6 @@ function filterlongitude_includes(value){
 }
     return(<> 
      {<FilterForm contact={contacts}/>}
-     {filterFirstName_includes("t2")}
     
   
       </>
