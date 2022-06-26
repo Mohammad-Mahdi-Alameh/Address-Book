@@ -2,6 +2,7 @@ import './App.css';
 import LoginForm from "./components/LoginForm";
 import Contacts from "./components/Contacts";
 import SignupForm from './components/SignupForm';
+import Navbar from './components/Navbar';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Contact from './components/Contact';
 import { useState, useEffect } from 'react';
@@ -48,6 +49,7 @@ function App() {
 
 
   return (<><BrowserRouter>
+  <Navbar/>
     <Routes>
       <Route path="/" element={<>
         {
