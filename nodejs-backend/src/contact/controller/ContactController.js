@@ -7,7 +7,8 @@ async function getByID(req, res) {
       const result = await getbyid(id);
     console.log('result =>', result);
 
-    return res.send(result);
+    res.status(200).json(result);
+
   } catch (error) {
     console.log(error);
   }
