@@ -133,6 +133,30 @@ function filterrelationship_status_includes(value){
     contact={filteredContact}
     />)));
 }
+function filterlatitude_start(value){
+  return(
+  contacts.filter(contact => contact.latitude.startsWith(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filterlatitude_end(value){
+  return(
+  contacts.filter(contact => contact.latitude.endsWith(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filterlatitude_includes(value){
+  return(
+  contacts.filter(contact => contact.latitude.includes(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
     return(<> 
      {filterFirstName_includes("t2")}
     
