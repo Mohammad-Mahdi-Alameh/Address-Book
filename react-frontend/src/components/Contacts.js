@@ -109,6 +109,30 @@ function filteremail_includes(value){
     contact={filteredContact}
     />)));
 }
+function filterrelationship_status_start(value){
+  return(
+  contacts.filter(contact => contact.relationship_status.startsWith(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filterrelationship_status_end(value){
+  return(
+  contacts.filter(contact => contact.relationship_status.endsWith(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filterrelationship_status_includes(value){
+  return(
+  contacts.filter(contact => contact.relationship_status.includes(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
     return(<> 
      {filterFirstName_includes("t2")}
     
