@@ -43,8 +43,8 @@ const ViewContact = () => {
                     <div>{info.relationship_status}</div>
                     <div>{info.location.latitude}</div>
                     <div>{info.location.longitude}</div>
-                
-                </>);
+                </>
+                );
 }
 
 export default ViewContact;

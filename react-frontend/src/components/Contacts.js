@@ -60,6 +60,31 @@ function filterLastName_includes(value){
     contact={filteredContact}
     />)));
 }
+ 
+function filterhphonenumber_start(value){
+  return(
+  contacts.filter(contact => contact.phonenumber.startsWith(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filterphonenumber_end(value){
+  return(
+  contacts.filter(contact => contact.phonenumber.endsWith(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filterphonenumber_includes(value){
+  return(
+  contacts.filter(contact => contact.phonenumber.includes(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
     return(<> 
      {filterFirstName_includes("t2")}
     
