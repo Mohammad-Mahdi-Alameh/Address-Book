@@ -157,6 +157,30 @@ function filterlatitude_includes(value){
     contact={filteredContact}
     />)));
 }
+function filterlongitude_start(value){
+  return(
+  contacts.filter(contact => contact.longitude.startsWith(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filterlongitude_end(value){
+  return(
+  contacts.filter(contact => contact.longitude.endsWith(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filterlongitude_includes(value){
+  return(
+  contacts.filter(contact => contact.longitude.includes(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
     return(<> 
      {filterFirstName_includes("t2")}
     
