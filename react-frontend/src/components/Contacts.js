@@ -12,25 +12,49 @@ const Contacts = ({ contacts }) => {
   // const filterList = FILTER_NAMES.map(name => (
   //   <Button key={name} text={name}/>
   // ));
-function filterFirstName_start(v){
+function filterFirstName_start(value){
   return(
-  contacts.filter(contact => contact.last_name.startsWith(v)).map(filteredContact => (
+  contacts.filter(contact => contact.first_name.startsWith(value)).map(filteredContact => (
     <Contact
     key={filteredContact._id}
     contact={filteredContact}
     />)));
 }
-function filterFirstName_end(v){
+function filterFirstName_end(value){
   return(
-  contacts.filter(contact => contact.last_name.endsWith(v)).map(filteredContact => (
+  contacts.filter(contact => contact.first_name.endsWith(value)).map(filteredContact => (
     <Contact
     key={filteredContact._id}
     contact={filteredContact}
     />)));
 }
-function filterFirstName_includes(v){
+function filterFirstName_includes(value){
   return(
-  contacts.filter(contact => contact.last_name.includes(v)).map(filteredContact => (
+  contacts.filter(contact => contact.first_name.includes(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filterLastName_start(value){
+  return(
+  contacts.filter(contact => contact.last_name.startsWith(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filterLastName_end(value){
+  return(
+  contacts.filter(contact => contact.last_name.endsWith(value)).map(filteredContact => (
+    <Contact
+    key={filteredContact._id}
+    contact={filteredContact}
+    />)));
+}
+function filterLastName_includes(value){
+  return(
+  contacts.filter(contact => contact.last_name.includes(value)).map(filteredContact => (
     <Contact
     key={filteredContact._id}
     contact={filteredContact}
