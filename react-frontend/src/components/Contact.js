@@ -11,7 +11,7 @@ const Contact = ({ contact}) => {
     }}
     >
       <h3>
-        {Contact.first_name}{" "} {Contact.last_name}
+        {contact.first_name}{" "} {contact.last_name}
         
       </h3>
     </div>
