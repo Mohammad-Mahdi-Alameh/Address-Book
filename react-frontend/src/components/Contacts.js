@@ -1,6 +1,5 @@
 import React from "react";
 import Contact from "./Contact";
-import { useEffect,useState } from "react";
 const Contacts = ({ contacts }) => {
  
     return(<> {contacts.map((contact) => (
