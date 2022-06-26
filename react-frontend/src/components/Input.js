@@ -2,6 +2,7 @@ import React from "react";
 const Input = ({ type,placeholder,value,label,name}) => {
    
       return (<div className={type}>
+        <label>{label}</label>
         <input
         type={type}
         placeholder={placeholder}
@@ -12,7 +13,6 @@ const Input = ({ type,placeholder,value,label,name}) => {
           //     setName(e.target.value);
           // }}
           />
-          <label>{label}</label>
         </div>
       );
       

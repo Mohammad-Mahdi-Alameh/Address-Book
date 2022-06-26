@@ -2,6 +2,8 @@ import React from "react";
 import Contact from "./Contact";
 import { useState } from "react";
 import Button from "./Button";
+import Input from "./Input";
+import FilterForm from "./FilterForm";
 const Contacts = ({ contacts }) => {
   // const [filter, setFilter] = useState('All');
   // const FILTER_MAP = {
@@ -12,6 +14,8 @@ const Contacts = ({ contacts }) => {
   // const filterList = FILTER_NAMES.map(name => (
   //   <Button key={name} text={name}/>
   // ));
+
+
 function filterFirstName_start(value){
   return(
   contacts.filter(contact => contact.first_name.startsWith(value)).map(filteredContact => (
@@ -182,6 +186,7 @@ function filterlongitude_includes(value){
     />)));
 }
     return(<> 
+     {<FilterForm contact={contacts}/>}
      {filterFirstName_includes("t2")}
     
   
