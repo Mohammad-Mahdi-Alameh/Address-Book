@@ -1,98 +1,115 @@
+import React from "react";
+import { useState, useEffect } from 'react';
 import './App.css';
-import LoginForm from "./components/LoginForm";
 import Contacts from "./components/Contacts";
 import SignupForm from './components/SignupForm';
 import AddContact from './components/AddContact';
 import Navbar from './components/Navbar';
 import ViewContact from './components/ViewContact';
-import { BrowserRouter, Routes, Route,useNavigate } from "react-router-dom";
 import Contact from './components/Contact';
-import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate,Link } from "react-router-dom";
+import GetContacts from "./components/GetContacts";
 
-function App() {
-  const [contacts, setContacts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const[token,setToken]=useState(false);
+const App = () => {
+  let navigate=useNavigate();
+  let token=localStorage.getItem("token");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  var axios = require('axios');
+  var data = JSON.stringify({
+    "username": username,
+    "password": password
+  });
 
-  //Checking if the token exists
-  const checkToken = () => {
-    try {
-      let token = localStorage.getItem("token");
-      if (token){
-        setToken(true);
-        return true;
-      }else{
-        setToken(false);
-        return false;
-    }} catch (err) {
-      console.log(err);
-    }
+  var config = {
+    method: 'post',
+    url: 'http://localhost:8080/api/user/login',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data: data
   };
-  const fetchContacts = async () => {
-    if (checkToken()) {
-      try {
-        const res = await fetch("http://localhost:8080/api/contact/get?user="+localStorage.getItem("user_id"));
-        const data = await res.json();
-        // console.log(data);
-        return data;
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      return [];
-    }
-  };
+
+  // const signup = async (survey) => {
+  //   const res = await fetch("http://localhost:8080/api/user/register", {
+  //     method: "POST",
+  //     body: survey,
+  //   });
+  //   console.log("hi");
+
+  //   const data = await res.json();
+  //   localStorage.setItem("token", data.token);
+  //   localStorage.setItem("user_id", data.user_id);
+  // };
+
  
-  useEffect(() => {
-    const getContacts = async () => {
-      const serverContacts = await fetchContacts();
-      setContacts(serverContacts);
-    };
-    getContacts();
+  const onLogin = (e) => {
+    e.preventDefault();
+    if (!username || !password) {
+      alert("Please fill missing fields !");
+      return;
+    }
+    axios(config)
+      .then(function (response) {
+        console.log(response.data);
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user_id", response.data._id);
+        navigate("/get_contacts");
+      })
+      .catch(function (error) {
+        alert("Wrong Username or password !")
+      });
 
-  }, []);
+    setUsername("");
+    setPassword("");
+    // setShowCreateSurvey(!showCreateSurvey);
+  };
+  return (
+    <>
+    <div className="container">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<><form className="login-form" onSubmit={onLogin}>
+      <div className="form-control">
+        <label>Username</label>
+        <input
+          type="text"
+          placeholder={"Enter Your Username"}
+          value={username}
+          onChange={(e) => {
+            setUsername(e.target.value);
+          }}
+        />
+        <label>Password</label>
+        <input
+          type="password"
+          placeholder={"Enter Your Password"}
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
 
 
-  return (<><BrowserRouter>
-   <div className="container">
-  <Navbar  />
-    <Routes>
-      <Route path="/" element={<>
-        {
+      </div>
 
-          contacts.length > 0 ? (
-            <Contacts contacts={contacts} />
-          ) : (
-            <LoginForm />
-          )
-        }</>}>
-      </Route>
-      <Route path="user/signup" element={<SignupForm />}></Route>
-      <Route path="user/add_contact" element={<AddContact />}></Route>
-      <Route path="/get_info" element={<ViewContact />}></Route>
-    </Routes>
+      <Link to={"user/signup"}className="link">Create Account</Link>
+      <input type={"submit"} value="Login" className="btn btn-block" />
+    </form></> 
+        }
+          
+        ></Route>
+        <Route path="user/signup" element={<SignupForm />}></Route>
+        <Route path="user/add_contact" element={<AddContact />}></Route>
+        <Route path="/get_info" element={<ViewContact />}></Route>
+        <Route path="/get_contacts" element={<GetContacts />}></Route>
+      </Routes>
     </div>
-  </BrowserRouter></>);
+  </>
+);
+
+
 }
-// else
-
-//   return (<>
-//     <BrowserRouter>
-//       {/* Nav */}
-//       <Routes>
-//         <Route path="/" element={<ViewContacts user_id={localStorage.getItem("user_id")} />}></Route>
-//       </Routes>
-//       <Routes>
-//         <Route path="signup" element={<SignupForm />}></Route>
-//       </Routes>
-//       {/* <Routes>
-//          <Route path="/get_info" element={<GetInfo />}></Route>
-//     </Routes> */}
-
-
-//     </BrowserRouter></>);
-
-
 
 
 export default App;

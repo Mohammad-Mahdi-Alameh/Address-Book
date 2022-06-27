@@ -11,7 +11,7 @@ const Navbar = () => {
     const logout = async () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user_id");
-        window.location.reload(false);
+        navigate("/");
     };
     let token;
     let checkToken=localStorage.getItem("token");

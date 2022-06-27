@@ -47,7 +47,7 @@ const SignupForm = () => {
   };
   return (
     <>
-  <form className="login-form" onSubmit={onSignUp}>
+  <form className="signup-form" onSubmit={onSignUp}>
 
       <div className="form-control">
         <label>First Name</label>
