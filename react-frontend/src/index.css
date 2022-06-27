@@ -11,7 +11,7 @@ body {
 }
 .container {
   width: 90vw;
-  margin: 7px auto;
+  margin: 9px auto;
   overflow: auto;
   min-height: 300px;
   border: 3px solid rgb(0, 0, 0);
@@ -55,16 +55,17 @@ body {
 .form > div{
   display: flex;
 }
-.filter-form {
-  margin: auto;
-  margin-bottom: 40px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-
+.form input{
+  width: 20vw;
+  height: 7vh;
+  padding: 3px 7px;
+  font-size: 17px;
 }
-
+.form h4{
+  margin-right: 2px;
+  margin-left: 2px;
+  margin-top: 5px;
+}
 .form-control {
   margin: auto;
   margin: 20px 0;
@@ -115,7 +116,12 @@ body {
   height: 200px;
   margin: 0 auto;
 }
-
+.filter{
+  display: flex;
+}
+.filter input{
+  width:25.5vw;
+}
 .contact:hover {
   transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
@@ -129,7 +135,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1vh;
+  margin-bottom: 5vh;
 }
 
 .icon>img{
