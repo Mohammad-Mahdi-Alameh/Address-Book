@@ -6,7 +6,8 @@ const contactSchema = new mongoose.Schema({
   phonenumber: { required: true , type: String },
   email: { required: true , type: String },
   relationship_status: { required: true , type: String },
-  location : { latitude :{ required: true , type: String } , longitude :{ required: true , type: String }},
+  latitude :{ required: true , type: String } , 
+  longitude :{ required: true , type: String },
   user: {
     required: true ,
     type: mongoose.Schema.Types.ObjectId,
