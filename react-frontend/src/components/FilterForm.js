@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Contact from "./Contact";
+import GetContacts from "./GetContacts";
 // import Contacts from "./Contacts";
 import Input from "./Input";
 const FilterForm = ({contacts}) => {
@@ -14,7 +15,7 @@ const FilterForm = ({contacts}) => {
     function filterFirstName_start(value) {
         // setFilteredContacts([]);
             contacts.filter(contact => contact.first_name.startsWith(value.toString));
-               setVisible(false);
+               array=contacts;
     }
     function filterFirstName_end(value) {
         return (
@@ -234,13 +235,7 @@ const FilterForm = ({contacts}) => {
 
         }
    
-     {contacts.filter(contact => contact.first_name.startsWith(filterValue)).map((contact) => (
-        <Contact
-          key={contact._id}
-          contact={contact}
-          // getInfo={getInfo}
-          />
-      ))}
+   
       </>);
     
 }

@@ -11,7 +11,7 @@ async function getbyid(contact) {
 
 async function addContact(body) {
     const {
-      first_name, last_name, phonenumber, email, location , relationship_status , user
+      first_name, last_name, phonenumber, email, latitude , longitude , relationship_status , user
     } = body;
   
     const contact = new Contact(body);

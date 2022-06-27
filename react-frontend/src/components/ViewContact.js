@@ -41,8 +41,8 @@ const ViewContact = () => {
                     <div>{info.phonenumber}</div>
                     <div>{info.email}</div>
                     <div>{info.relationship_status}</div>
-                    <div>{info.location.latitude}</div>
-                    <div>{info.location.longitude}</div>
+                    <div>{info.latitude}</div>
+                    <div>{info.longitude}</div>
                 </>
                 );
 }

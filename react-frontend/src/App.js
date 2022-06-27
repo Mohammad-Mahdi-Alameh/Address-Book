@@ -9,12 +9,21 @@ import ViewContact from './components/ViewContact';
 import Contact from './components/Contact';
 import { BrowserRouter, Routes, Route, useNavigate,Link } from "react-router-dom";
 import GetContacts from "./components/GetContacts";
+import FilterForm from "./components/FilterForm";
 
 const App = () => {
   let navigate=useNavigate();
   let token=localStorage.getItem("token");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+
+
+
+
+
+
+  
   var axios = require('axios');
   var data = JSON.stringify({
     "username": username,
@@ -29,19 +38,6 @@ const App = () => {
     },
     data: data
   };
-
-  // const signup = async (survey) => {
-  //   const res = await fetch("http://localhost:8080/api/user/register", {
-  //     method: "POST",
-  //     body: survey,
-  //   });
-  //   console.log("hi");
-
-  //   const data = await res.json();
-  //   localStorage.setItem("token", data.token);
-  //   localStorage.setItem("user_id", data.user_id);
-  // };
-
  
   const onLogin = (e) => {
     e.preventDefault();
@@ -100,9 +96,10 @@ const App = () => {
           
         ></Route>
         <Route path="user/signup" element={<SignupForm />}></Route>
-        <Route path="user/add_contact" element={<AddContact />}></Route>
+        <Route path="/add_contact" element={<AddContact />}></Route>
         <Route path="/get_info" element={<ViewContact />}></Route>
-        <Route path="/get_contacts" element={<GetContacts />}></Route>
+        <Route path="/get_contacts" element={<FilterForm />}></Route>
+        
       </Routes>
     </div>
   </>

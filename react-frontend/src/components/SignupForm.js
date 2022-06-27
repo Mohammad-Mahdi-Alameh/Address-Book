@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const SignupForm = () => {
+  const navigate=useNavigate();
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -35,7 +37,7 @@ const SignupForm = () => {
         console.log(response.data);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user_id", response.data._id);
-        window.location.reload(false);
+        navigate("/get_contacts");
       })
       .catch(function (error) {
         alert("Username exist ! Please Login !")

@@ -10,46 +10,48 @@ const AddContact = () => {
   const [relationship_status, setRelationshipStatus] = useState("");
   const [location, setLocation] = useState("");
   var axios = require('axios');
-  var data = JSON.stringify({
-    "first_name":firstname,
-    "last_name":lastname,
-    "phonenumber": phonenumber,
-    "email": email,
-    "relationship_status": relationship_status,
-    "location": location,
-    "user": localStorage.getItem("user_id")
-  });
 
-  var config = {
-    method: 'post',
-    url: 'http://localhost:8080/api/user/register',
-    headers: {
-      'Content-Type': 'application/json' ,
-      'Authorization': 'Bearer '+localStorage.getItem("token")
-    },
-    data: data
-  };
 
- 
-  
+
   const onAddContact = (e) => {
     e.preventDefault();
-    if (!firstname || !lastname || !phonenumber || !email || !relationship_status || !location ) {
+    if (!firstname || !lastname || !phonenumber || !email || !relationship_status || !location) {
       alert("Please fill missing fields !");
       return;
     }
+    var loc = location.split(",");
+
+    var data = JSON.stringify({
+      "first_name": firstname,
+      "last_name": lastname,
+      "phonenumber": phonenumber,
+      "email": email,
+      "relationship_status": relationship_status,
+      "latitude": loc[0],
+      "longitude": loc[1],
+      "user": localStorage.getItem("user_id")
+    });
+
+
+    var config = {
+      method: 'post',
+      url: 'http://localhost:8080/api/contact/add',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+
     axios(config)
       .then(function (response) {
         console.log(response.data);
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user_id", response.data._id);
-        navigate("/");
+        navigate("/get_contacts");
       })
       .catch(function (error) {
         alert("Failed to add user ! Try again !")
       });
-    setFirstName("");  
-    setLastName("");  
+    setFirstName("");
+    setLastName("");
     setPhoneNumber("");
     setEmail("");
     setRelationshipStatus("");
@@ -57,68 +59,68 @@ const AddContact = () => {
   };
   return (
     <>
-  <form className="login-form" onSubmit={onAddContact}>
+      <form className="login-form" onSubmit={onAddContact}>
 
-      <div className="form-control">
-        <label>First Name</label>
-        <input
-          type="text"
-          placeholder={"Enter First Name"}
-          value={firstname}
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
-        />
-        <label>Last Name</label>
-        <input
-          type="text"
-          placeholder={"Enter Last Name"}
-          value={lastname}
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-        />
-        <label>Phone Number</label>
-        <input
-          type="text"
-          placeholder={"Enter Phone Number"}
-          value={phonenumber}
-          onChange={(e) => {
-            setPhoneNumber(e.target.value);
-          }}
-        />
-        <label>Email</label>
-        <input
-          type="text"
-          placeholder={"Enter Email"}
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-         <label>Relationship Status</label>
-        <input
-          type="text"
-          placeholder={"Enter Relationship Status"}
-          value={relationship_status}
-          onChange={(e) => {
-            setRelationshipStatus(e.target.value);
-          }}
-        />
-        <label>Location</label>
-        <input
-          type="text"
-          placeholder={"Enter Location"}
-          value={location}
-          onChange={(e) => {
-            setLocation(e.target.value);
-          }}
-        />
-       
-      </div>
+        <div className="form-control">
+          <label>First Name</label>
+          <input
+            type="text"
+            placeholder={"Enter First Name"}
+            value={firstname}
+            onChange={(e) => {
+              setFirstName(e.target.value);
+            }}
+          />
+          <label>Last Name</label>
+          <input
+            type="text"
+            placeholder={"Enter Last Name"}
+            value={lastname}
+            onChange={(e) => {
+              setLastName(e.target.value);
+            }}
+          />
+          <label>Phone Number</label>
+          <input
+            type="text"
+            placeholder={"Enter Phone Number"}
+            value={phonenumber}
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+            }}
+          />
+          <label>Email</label>
+          <input
+            type="text"
+            placeholder={"Enter Email"}
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+          <label>Relationship Status</label>
+          <input
+            type="text"
+            placeholder={"Enter Relationship Status"}
+            value={relationship_status}
+            onChange={(e) => {
+              setRelationshipStatus(e.target.value);
+            }}
+          />
+          <label>Location</label>
+          <input
+            type="text"
+            placeholder={"Enter Location"}
+            value={location}
+            onChange={(e) => {
+              setLocation(e.target.value);
+            }}
+          />
 
-      <input type={"submit"} value="Add" className="btn btn-block" />
-    </form>
+        </div>
+
+        <input type={"submit"} value="Add" className="btn btn-block" />
+      </form>
     </>);
 
 

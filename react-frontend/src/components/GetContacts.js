@@ -8,6 +8,7 @@ import Contact from './Contact';
 import { useState, useEffect } from 'react';
 
 function GetContacts() {
+  let navigate=useNavigate();
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState(false);
@@ -28,7 +29,7 @@ function GetContacts() {
     }
   };
   const fetchContacts = async () => {
-    // if (checkToken()) {
+    if (checkToken()) {
       try {
         const res = await fetch("http://localhost:8080/api/contact/get?user=" + localStorage.getItem("user_id"));
         const data = await res.json();
@@ -37,9 +38,11 @@ function GetContacts() {
       } catch (err) {
         console.log(err);
       }
-    // } else {
-    //   return [];
-    // }
+    } else {
+      alert("Please Login !!!")
+      navigate("/");
+      
+    }
   };
 
   useEffect(() => {
