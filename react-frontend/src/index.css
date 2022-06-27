@@ -44,7 +44,18 @@ body {
 .btn:active {
   transform: scale(0.98);
 }
-form {
+.form {
+  margin: auto;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.form > div{
+  display: flex;
+}
+.filter-form {
   margin: auto;
   margin-bottom: 40px;
   display: flex;
