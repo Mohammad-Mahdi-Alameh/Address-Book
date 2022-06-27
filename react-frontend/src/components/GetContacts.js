@@ -54,6 +54,8 @@ function GetContacts() {
   }, []);
 
 return(<>
+{!loading && <div className="loading"><h1>Loading ...</h1></div>}
+{loading && <div>{contacts.map((contact) => <Contact key={contact._id} contact={contact}/>)}</div>}
 
 
 
