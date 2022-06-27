@@ -33,10 +33,10 @@ async function get(req, res) {
     try {
       console.log(req.body);
   
-      const { first_name, last_name, phonenumber, email, location , relationship_status , user } = req.body;
+      const { first_name, last_name, phonenumber, email, latitude , longitude , relationship_status , user } = req.body;
 
     // Validate user input
-    if (!(phonenumber && email && location && relationship_status && user && first_name && last_name)) {
+    if (!(phonenumber && email && latitude && longitude && relationship_status && user && first_name && last_name)) {
       res.status(400).send("All input is required");
     }
   
