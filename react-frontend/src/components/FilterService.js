@@ -58,6 +58,32 @@ const FilterService = ({ contacts, filterBy, filterMethod, filterValue }) => {
 
     }
   }
+  if (filterBy === "Phone Number") {
+    if (filterMethod === "Includes") {
+
+      return (
+        <> {contacts.filter((contact) => contact.phonenumber.toLowerCase().includes(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+    else if (filterMethod === "Starts With") {
+
+      return (
+        <> {contacts.filter((contact) => contact.phonenumber.toLowerCase().startsWith(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+    else if (filterMethod === "Ends With") {
+
+      return (
+        <> {contacts.filter((contact) => contact.phonenumber.toLowerCase().endsWith(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+  }
 
 
   
