@@ -20,7 +20,7 @@ const AddContact = () => {
       return;
     }
     var loc = location.split(",");
-
+    console.log(loc);
     var data = JSON.stringify({
       "first_name": firstname,
       "last_name": lastname,
@@ -48,7 +48,7 @@ const AddContact = () => {
         navigate("/get_contacts");
       })
       .catch(function (error) {
-        alert("Failed to add user ! Try again !")
+        alert("Failed to add contact ! Try again !")
       });
     setFirstName("");
     setLastName("");
@@ -59,7 +59,7 @@ const AddContact = () => {
   };
   return (
     <>
-      <form className="login-form" onSubmit={onAddContact}>
+      <form className="signup-form" onSubmit={onAddContact}>
 
         <div className="form-control">
           <label>First Name</label>

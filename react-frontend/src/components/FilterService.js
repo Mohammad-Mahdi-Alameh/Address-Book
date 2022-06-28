@@ -2,7 +2,10 @@ import React from "react";
 import Contact from "./Contact";
 
 const FilterService = ({ contacts, filterBy, filterMethod, filterValue }) => {
-  if (!filterBy || !filterMethod){
+  if(contacts.length === 0){
+    return(<div className="loading">You have no contacts yet !</div>)
+  }
+  else if (!filterBy || !filterMethod ){
     return (<>{contacts.map((contact) => (
       <Contact key={contact._id} contact={contact} />))}</>)
   }
