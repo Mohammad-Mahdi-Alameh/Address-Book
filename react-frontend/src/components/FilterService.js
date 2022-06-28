@@ -84,6 +84,32 @@ const FilterService = ({ contacts, filterBy, filterMethod, filterValue }) => {
 
     }
   }
+  if (filterBy === "Email") {
+    if (filterMethod === "Includes") {
+
+      return (
+        <> {contacts.filter((contact) => contact.email.toLowerCase().includes(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+    else if (filterMethod === "Starts With") {
+
+      return (
+        <> {contacts.filter((contact) => contact.email.toLowerCase().startsWith(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+    else if (filterMethod === "Ends With") {
+
+      return (
+        <> {contacts.filter((contact) => contact.email.toLowerCase().endsWith(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+  }
 
 
   
