@@ -110,6 +110,84 @@ const FilterService = ({ contacts, filterBy, filterMethod, filterValue }) => {
 
     }
   }
+  if (filterBy === "Relationship Status") {
+    if (filterMethod === "Includes") {
+
+      return (
+        <> {contacts.filter((contact) => contact.relationship_status.toLowerCase().includes(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+    else if (filterMethod === "Starts With") {
+
+      return (
+        <> {contacts.filter((contact) => contact.relationship_status.toLowerCase().startsWith(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+    else if (filterMethod === "Ends With") {
+
+      return (
+        <> {contacts.filter((contact) => contact.relationship_status.toLowerCase().endsWith(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+  }
+  if (filterBy === "latitue") {
+    if (filterMethod === "Includes") {
+
+      return (
+        <> {contacts.filter((contact) => contact.latitue.toLowerCase().includes(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+    else if (filterMethod === "Starts With") {
+
+      return (
+        <> {contacts.filter((contact) => contact.latitue.toLowerCase().startsWith(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+    else if (filterMethod === "Ends With") {
+
+      return (
+        <> {contacts.filter((contact) => contact.latitue.toLowerCase().endsWith(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+  }
+  if (filterBy === "longitude") {
+    if (filterMethod === "Includes") {
+
+      return (
+        <> {contacts.filter((contact) => contact.longitude.toLowerCase().includes(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+    else if (filterMethod === "Starts With") {
+
+      return (
+        <> {contacts.filter((contact) => contact.longitude.toLowerCase().startsWith(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+    else if (filterMethod === "Ends With") {
+
+      return (
+        <> {contacts.filter((contact) => contact.longitude.toLowerCase().endsWith(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+  }
 
 
   
