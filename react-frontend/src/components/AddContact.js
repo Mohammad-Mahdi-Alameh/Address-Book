@@ -115,6 +115,10 @@ const AddContact = () => {
             onChange={(e) => {
               setLocation(e.target.value);
             }}
+            onClick={(e)=>{
+              navigate("/Map");
+            }            
+            }
           />
 
         </div>
