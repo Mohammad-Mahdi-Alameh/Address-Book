@@ -235,6 +235,7 @@ const FilterForm = ({contacts}) => {
 
         }
    
+    {<FilterForm contacts={contacts} filterBy={filterBy} filterMethod={filterMethod} filterValue={filterValue}/>}
    
       </>);
     

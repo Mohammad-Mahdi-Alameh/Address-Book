@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import ViewContact from './ViewContact';
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Contact from './Contact';
+import FilterService from './FilterService';
 import { useState, useEffect } from 'react';
 
 function GetContacts() {
@@ -12,7 +13,24 @@ function GetContacts() {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState(false);
-
+  const [filterBy, setFilterBy] = useState("");
+  const [filterMethod, setFilterMethod] = useState("");
+  const [filterValue, setFilterValue] = useState("");
+  const onFilter = (e) => {
+      e.preventDefault();
+      console.log(filterBy);
+      console.log(filterMethod);
+      console.log(filterValue);
+      if (!filterBy || !filterMethod || !filterValue) {
+        alert("Please fill missing fields !");
+      }
+   
+      
+  
+      setFilterBy("");
+      setFilterMethod("");
+      setFilterValue("");
+    };
   //Checking if the token exists
   const checkToken = () => {
     try {
@@ -56,9 +74,46 @@ function GetContacts() {
 
   }, []);
 
-return(<>
-{!loading && <div className="loading"><h1>Loading ...</h1></div>}
-{loading && <div>{contacts.map((contact) => <Contact key={contact._id} contact={contact}/>)}</div>}
+return(<>  {<form className="form" >
+<div><h4>Filter By : </h4>
+<select name="filterBy" value={filterBy} onChange={(e) => {
+    setFilterBy(e.target.value);
+}}>
+    <option value=""></option>
+    <option value="First Name">First Name</option>
+    <option value="Last Name">Last Name</option>
+    <option value="Phone  Number">Phone  Number</option>
+    <option value="Email">Email</option>
+    <option value="Relationship Status">Relationship Status</option>
+    <option value="longitude">longitude</option>
+    <option value="latitude">latitude</option>
+
+</select>
+<h4>Criteria : </h4>
+<select name="filterMethod" value={filterMethod} onChange={(e) => {
+    setFilterMethod(e.target.value);
+}}>
+    <option value=" "></option>
+    <option value="Includes">Includes</option>
+    <option value="Starts With">Starts With</option>
+    <option value="Ends With">Ends With</option>
+
+</select>
+<h4>Value : </h4>
+<input type={"text"} placeholder={"Enter value "} name={"filterValue"} value={filterValue} onChange={(e) => {
+    setFilterValue(e.target.value);
+}}/></div>
+<div className="filter"><input type={"submit"} onClick={onFilter} value="Filter" className="btn btn-block" />
+<input type={"button"} value="Reset" className="btn btn-block" /></div>
+</form>
+
+}
+
+{<FilterService contacts={contacts} filterBy={filterBy} filterMethod={filterMethod} filterValue={filterValue}/>}
+
+
+{/* {!loading && <div className="loading"><h1>Loading ...</h1></div>}
+{loading && <div>{contacts.map((contact) => <Contact key={contact._id} contact={contact}/>)}</div>} */}
 
 
 

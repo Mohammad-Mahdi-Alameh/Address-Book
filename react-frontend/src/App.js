@@ -23,7 +23,7 @@ const App = () => {
 
 
 
-  
+
   var axios = require('axios');
   var data = JSON.stringify({
     "username": username,
@@ -98,7 +98,7 @@ const App = () => {
         <Route path="user/signup" element={<SignupForm />}></Route>
         <Route path="/add_contact" element={<AddContact />}></Route>
         <Route path="/get_info" element={<ViewContact />}></Route>
-        <Route path="/get_contacts" element={<FilterForm />}></Route>
+        <Route path="/get_contacts" element={<GetContacts />}></Route>
         
       </Routes>
     </div>
