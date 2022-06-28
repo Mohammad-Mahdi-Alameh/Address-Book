@@ -109,11 +109,12 @@ return(<>  {<form className="form" >
 
 }
 
-{<FilterService contacts={contacts} filterBy={filterBy} filterMethod={filterMethod} filterValue={filterValue}/>}
 
 
-{/* {!loading && <div className="loading"><h1>Loading ...</h1></div>}
-{loading && <div>{contacts.map((contact) => <Contact key={contact._id} contact={contact}/>)}</div>} */}
+
+{!loading && <div className="loading"><h1>Loading ...</h1></div>}
+{loading && <div>{<FilterService contacts={contacts}filterBy={filterBy} filterMethod={filterMethod} filterValue={filterValue}/>}</div>}
+
 
 
 

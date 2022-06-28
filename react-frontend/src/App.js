@@ -47,7 +47,7 @@ const App = () => {
     }
     axios(config)
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user_id", response.data._id);
         navigate("/get_contacts");
