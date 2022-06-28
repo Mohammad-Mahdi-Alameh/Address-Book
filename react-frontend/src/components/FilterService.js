@@ -32,6 +32,32 @@ const FilterService = ({ contacts, filterBy, filterMethod, filterValue }) => {
 
     }
   }
+  if (filterBy === "Last Name") {
+    if (filterMethod === "Includes") {
+
+      return (
+        <> {contacts.filter((contact) => contact.last_name.toLowerCase().includes(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+    else if (filterMethod === "Starts With") {
+
+      return (
+        <> {contacts.filter((contact) => contact.last_name.toLowerCase().startsWith(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+    else if (filterMethod === "Ends With") {
+
+      return (
+        <> {contacts.filter((contact) => contact.last_name.toLowerCase().endsWith(filterValue.toLowerCase())).map((contact) => (
+          <Contact key={contact._id} contact={contact} />))} </>
+      );
+
+    }
+  }
 
 
   
