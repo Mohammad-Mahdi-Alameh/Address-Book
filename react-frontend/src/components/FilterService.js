@@ -4,14 +4,26 @@ import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 
-const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
-  let navigate=useNavigate();
-  // const [token, setToken] = useState(false);
-
-  var filtered =contacts;
-  const [backup, setBackup] = useState([]);
-  // const [contacts, setContacts] = useState([]);
+const FilterService = ({ contacts, filterBy, filterMethod, filterValue }) => {
+  let navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  let filtered;
+
+  filtered=contacts;
+  
+  // if (localStorage.getItem("filtered"))
+  //     filtered = localStorage.getItem("filtered");
+  // else
+  // filtered=contacts;
+
+
+
+  // const [token, setToken] = useState(false);
+  // const [backup, setBackup] = useState([]);
+  // const [filtered, setFiltered] = useState([]);
+  // for(let i=0;i<contacts.length;i++){
+  //   setFiltered([...filtered, `${contacts[i]}`])
+  // }
   // const checkToken = () => {
   //   try {
   //     let token = localStorage.getItem("token");
@@ -39,7 +51,7 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
   //   } else {
   //     alert("Please Login !!!")
   //     navigate("/");
-      
+
   //   }
   // };
 
@@ -53,13 +65,12 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
   //   setFiltered(contacts);
   //   console.log(filtered);
   //   setLoading(true);
-
-
   // }, []);
+
 
   if (filtered.length === 0) {
     return (<>{!loading && <div className="loading"><h1>Loading ...</h1></div>}
-    {loading && <div className="loading">You have no contacts yet !</div>}
+      {loading && <div className="loading">You have no contacts yet !</div>}
     </>
     )
   }
@@ -69,18 +80,22 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
   }
   if (filterBy === "First Name") {
     if (filterMethod === "Includes") {
-      filtered(filtered);
-      filtered = contacts.filter((contact) => contact.first_name.toLowerCase().includes(filterValue.toLowerCase()));
+      filtered = (contacts.filter((contact) => contact.first_name.toLowerCase().includes(filterValue.toLowerCase())));
+
+      localStorage.setItem("filtered",JSON.stringify(filtered));
       
+
       return (
-        <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
+        <> {localStorage.setItem("filtered", JSON.stringify(filtered))}{!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>}
         </>
       );
 
     }
     else if (filterMethod === "Starts With") {
-      filtered = contacts.filter((contact) => contact.first_name.toLowerCase().startsWith(filterValue.toLowerCase()));
+      filtered = contacts.filter((contact) => contact.first_name.toLowerCase().startsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -88,7 +103,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
 
     }
     else if (filterMethod === "Ends With") {
-      filtered = contacts.filter((contact) => contact.first_name.toLowerCase().endsWith(filterValue.toLowerCase()))
+      filtered = contacts.filter((contact) => contact.first_name.toLowerCase().endsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -99,7 +116,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
   if (filterBy === "Last Name") {
     if (filterMethod === "Includes") {
 
-      filtered = contacts.filter((contact) => contact.last_name.toLowerCase().includes(filterValue.toLowerCase()));
+      filtered = contacts.filter((contact) => contact.last_name.toLowerCase().includes(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -108,7 +127,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
     }
     else if (filterMethod === "Starts With") {
 
-      filtered = contacts.filter((contact) => contact.last_name.toLowerCase().startsWith(filterValue.toLowerCase()));
+      filtered = contacts.filter((contact) => contact.last_name.toLowerCase().startsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -117,8 +138,10 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
     }
     else if (filterMethod === "Ends With") {
 
-      filtered =contacts.filter((contact) => contact.last_name.toLowerCase().endsWith(filterValue.toLowerCase()));
-       return (
+      filtered = contacts.filter((contact) => contact.last_name.toLowerCase().endsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
+      return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
       );
@@ -128,7 +151,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
   if (filterBy === "Phone Number") {
     if (filterMethod === "Includes") {
 
-      filtered = contacts.filter((contact) => contact.phonenumber.toLowerCase().includes(filterValue.toLowerCase()));
+      filtered = contacts.filter((contact) => contact.phonenumber.toLowerCase().includes(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -137,8 +162,10 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
     }
     else if (filterMethod === "Starts With") {
 
-      filtered =contacts.filter((contact) => contact.phonenumber.toLowerCase().startsWith(filterValue.toLowerCase()));
-       return (
+      filtered = contacts.filter((contact) => contact.phonenumber.toLowerCase().startsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
+      return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
       );
@@ -146,7 +173,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
     }
     else if (filterMethod === "Ends With") {
 
-      filtered = contacts.filter((contact) => contact.phonenumber.toLowerCase().endsWith(filterValue.toLowerCase()));
+      filtered = contacts.filter((contact) => contact.phonenumber.toLowerCase().endsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -157,7 +186,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
   if (filterBy === "Email") {
     if (filterMethod === "Includes") {
 
-      filtered = contacts.filter((contact) => contact.email.toLowerCase().includes(filterValue.toLowerCase()));
+      filtered = contacts.filter((contact) => contact.email.toLowerCase().includes(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -166,8 +197,10 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
     }
     else if (filterMethod === "Starts With") {
 
-      filtered =contacts.filter((contact) => contact.email.toLowerCase().startsWith(filterValue.toLowerCase()));
-       return (
+      filtered = contacts.filter((contact) => contact.email.toLowerCase().startsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
+      return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
       );
@@ -175,8 +208,10 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
     }
     else if (filterMethod === "Ends With") {
 
-      filtered = contacts.filter((contact) => contact.email.toLowerCase().endsWith(filterValue.toLowerCase()));
-       return (
+      filtered = contacts.filter((contact) => contact.email.toLowerCase().endsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
+      return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
       );
@@ -186,7 +221,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
   if (filterBy === "Relationship Status") {
     if (filterMethod === "Includes") {
 
-      filtered = contacts.filter((contact) => contact.relationship_status.toLowerCase().includes(filterValue.toLowerCase()));
+      filtered = contacts.filter((contact) => contact.relationship_status.toLowerCase().includes(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -195,7 +232,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
     }
     else if (filterMethod === "Starts With") {
 
-      filtered = contacts.filter((contact) => contact.relationship_status.toLowerCase().startsWith(filterValue.toLowerCase()));
+      filtered = contacts.filter((contact) => contact.relationship_status.toLowerCase().startsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -204,7 +243,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
     }
     else if (filterMethod === "Ends With") {
 
-      filtered = contacts.filter((contact) => contact.relationship_status.toLowerCase().endsWith(filterValue.toLowerCase())); return (
+      filtered = contacts.filter((contact) => contact.relationship_status.toLowerCase().endsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
       );
@@ -214,7 +255,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
   if (filterBy === "latitue") {
     if (filterMethod === "Includes") {
 
-      filtered = contacts.filter((contact) => contact.latitude.toLowerCase().includes(filterValue.toLowerCase()));
+      filtered = contacts.filter((contact) => contact.latitude.toLowerCase().includes(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {
           <div>{filtered.map((contact) => (
@@ -223,7 +266,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
 
     }
     else if (filterMethod === "Starts With") {
-      filtered = contacts.filter((contact) => contact.latitude.toLowerCase().startsWith(filterValue.toLowerCase()))
+      filtered = contacts.filter((contact) => contact.latitude.toLowerCase().startsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -231,7 +276,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
 
     }
     else if (filterMethod === "Ends With") {
-      filtered = contacts.filter((contact) => contact.latitude.toLowerCase().endsWith(filterValue.toLowerCase()));
+      filtered = contacts.filter((contact) => contact.latitude.toLowerCase().endsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -241,7 +288,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
   }
   if (filterBy === "longitude") {
     if (filterMethod === "Includes") {
-      filtered = contacts.filter((contact) => contact.longitude.toLowerCase().includes(filterValue.toLowerCase()))
+      filtered = contacts.filter((contact) => contact.longitude.toLowerCase().includes(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -249,7 +298,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
 
     }
     else if (filterMethod === "Starts With") {
-      filtered = contacts.filter((contact) => contact.longitude.toLowerCase().startsWith(filterValue.toLowerCase()))
+      filtered = contacts.filter((contact) => contact.longitude.toLowerCase().startsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>
@@ -257,7 +308,9 @@ const FilterService = ({  contacts,filterBy, filterMethod, filterValue  }) => {
 
     }
     else if (filterMethod === "Ends With") {
-      filtered = contacts.filter((contact) => contact.longitude.toLowerCase().endsWith(filterValue.toLowerCase()))
+      filtered = contacts.filter((contact) => contact.longitude.toLowerCase().endsWith(filterValue.toLowerCase())); 
+      localStorage.setItem("filtered",JSON.stringify(filtered));
+      
       return (
         <> {!loading && <div className="loading"><h1>Loading ...</h1></div>}{loading && <div>{filtered.map((contact) => (
           <Contact key={contact._id} contact={contact} />))}</div>} </>

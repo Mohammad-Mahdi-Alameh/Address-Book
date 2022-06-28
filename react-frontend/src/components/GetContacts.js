@@ -16,16 +16,25 @@ function GetContacts() {
   const [filterBy, setFilterBy] = useState("");
   const [filterMethod, setFilterMethod] = useState("");
   const [filterValue, setFilterValue] = useState("");
+  const [backup, setBackup] = useState([]);
+  const onReset = (e) => {
+      e.preventDefault();
+      setContacts(backup);
+  }
   const onFilter = (e) => {
       e.preventDefault();
-      console.log(filterBy);
-      console.log(filterMethod);
-      console.log(filterValue);
+        // console.log(filterBy);
+        // console.log(filterMethod);
+        // console.log(filterValue);
       if (!filterBy || !filterMethod || !filterValue) {
         alert("Please fill missing fields !");
       }
-   
-      
+      else{
+        var filtered = JSON.parse(localStorage.getItem("filtered"));
+        console.log(filtered);
+        setContacts(filtered);
+        console.log(contacts);
+      }
   
       setFilterBy("");
       setFilterMethod("");
@@ -67,6 +76,7 @@ function GetContacts() {
     const getContacts = async () => {
       const serverContacts = await fetchContacts();
       setContacts(serverContacts);
+      setBackup(serverContacts);
     };
     getContacts();
     setLoading(true);
@@ -104,7 +114,7 @@ return(<>  {<form className="form" >
     setFilterValue(e.target.value);
 }}/></div>
 <div className="filter"><input type={"submit"} onClick={onFilter} value="Filter" className="btn btn-block" />
-<input type={"button"} value="Reset" className="btn btn-block" /></div>
+<input type={"button"} value="Reset"onClick={onReset} className="btn btn-block" /></div>
 </form>
 
 }
