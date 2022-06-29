@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import ClickMap from "./ClickMap";
 import icon from "../constants";
 
 class Map extends Component {
@@ -41,6 +42,8 @@ class Map extends Component {
         <Marker position={[latitude, longitude]} icon={icon}>
           <Popup>Here you are ^_^</Popup>
         </Marker>
+
+      <ClickMap/>
       </MapContainer>
     );
   }
