@@ -58,8 +58,8 @@ const AddContact = () => {
     setPhoneNumber("");
     setEmail("");
     setRelationshipStatus("");
-    localStorage.getItem("lang");
-    localStorage.getItem("lat");
+    localStorage.removeItem("lang");
+    localStorage.removeItem("lat");
   };
   return (
     <>
