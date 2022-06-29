@@ -17,9 +17,10 @@ const SignupForm = () => {
 
   var config = {
     method: 'post',
-    url: 'http://localhost:8080/api/user/register',
+    url: 'http://localhost:8080/api/v1/user/register',
     headers: {
       'Content-Type': 'application/json'
+      
     },
     data: data
   };

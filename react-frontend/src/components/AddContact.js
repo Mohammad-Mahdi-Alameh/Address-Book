@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Map from "./Map";
 import { useNavigate } from "react-router-dom";
 const AddContact = () => {
   let navigate = useNavigate();
@@ -9,35 +10,37 @@ const AddContact = () => {
   const [email, setEmail] = useState("");
   const [relationship_status, setRelationshipStatus] = useState("");
   const [location, setLocation] = useState("");
+  const [visibleMap, setVisibleMap] = useState(false);
   var axios = require('axios');
 
 
 
   const onAddContact = (e) => {
     e.preventDefault();
-    if (!firstname || !lastname || !phonenumber || !email || !relationship_status || !location) {
+    if (!firstname || !lastname || !phonenumber || !email || !relationship_status || !localStorage.getItem("lat") || !localStorage.getItem("lang")) {
       alert("Please fill missing fields !");
       return;
     }
-    var loc = location.split(",");
-    console.log(loc);
+    // var loc = location.split(",");
+    // console.log(loc);
     var data = JSON.stringify({
       "first_name": firstname,
       "last_name": lastname,
       "phonenumber": phonenumber,
       "email": email,
       "relationship_status": relationship_status,
-      "latitude": loc[0],
-      "longitude": loc[1],
+      "latitude": localStorage.getItem("lat"),
+      "longitude":localStorage.getItem("lang"),
       "user": localStorage.getItem("user_id")
     });
 
 
     var config = {
       method: 'post',
-      url: 'http://localhost:8080/api/contact/add',
+      url: 'http://localhost:8080/api/v1/contact/add',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        // 'Authorization' : 'Bearer '+localStorage.getItem("token")
       },
       data: data
     };
@@ -55,11 +58,12 @@ const AddContact = () => {
     setPhoneNumber("");
     setEmail("");
     setRelationshipStatus("");
-    setLocation("");
+    localStorage.getItem("lang");
+    localStorage.getItem("lat");
   };
   return (
     <>
-      <form className="signup-form" onSubmit={onAddContact}>
+      {<form className="signup-form" onSubmit={onAddContact}>
 
         <div className="form-control">
           <label>First Name</label>
@@ -108,7 +112,7 @@ const AddContact = () => {
             }}
           />
           <label>Location</label>
-          <input
+          {/* <input
             type="text"
             placeholder={"Enter Location"}
             value={location}
@@ -116,15 +120,16 @@ const AddContact = () => {
               setLocation(e.target.value);
             }}
             onClick={(e)=>{
-              navigate("/Map");
+              
             }            
             }
-          />
+          /> */}
 
+      <Map/>
         </div>
 
         <input type={"submit"} value="Add" className="btn btn-block" />
-      </form>
+      </form>}
     </>);
 
 

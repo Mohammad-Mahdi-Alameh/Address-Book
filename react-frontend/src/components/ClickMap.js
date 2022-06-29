@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useMapEvents } from "react-leaflet";
 import { useNavigate } from "react-router-dom";
-const ClickMap = () => {
+const ClickMap = (visibleMap,setVisibleMap) => {
     let navigate=useNavigate();
     const [location,setLocation]=useState(null);
 
@@ -12,6 +12,8 @@ const ClickMap = () => {
         localStorage.setItem("lat",location.lat);
         localStorage.setItem("lang",location.lng);
         navigate("/add_contact");
+        
+        // setVisibleMap(false);
     }})
 
 }

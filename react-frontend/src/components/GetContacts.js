@@ -39,6 +39,7 @@ function GetContacts() {
       setFilterBy("");
       setFilterMethod("");
       setFilterValue("");
+      
     };
   //Checking if the token exists
   const checkToken = () => {
@@ -58,7 +59,7 @@ function GetContacts() {
   const fetchContacts = async () => {
     if (checkToken()) {
       try {
-        const res = await fetch("http://localhost:8080/api/contact/get?user=" + localStorage.getItem("user_id"));
+        const res = await fetch("http://localhost:8080/api/v1/contact/get?user=" + localStorage.getItem("user_id"));
         const data = await res.json();
         // console.log(data);
         return data;

@@ -13,7 +13,7 @@ const ViewContact = () => {
     const fetchInfo = async () => {
 
         try {
-            const res = await fetch("http://localhost:8080/api/contact/get_contact?id=" + contact_id);
+            const res = await fetch("http://localhost:8080/api/v1/contact/get_contact?id=" + contact_id);
             const data = await res.json();
             console.log(data);
             setInfo(data);
@@ -37,6 +37,7 @@ const ViewContact = () => {
         return (
             <>
                 <div className="view_contact">
+                    {/* <img src='../assets/'+{info.image}+'' > */}
                     <h3>{info.first_name}</h3>
                     <h3>{info.last_name}</h3>
                     <h3>{info.phonenumber}</h3>
