@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const ViewContact = () => {
     let [info, setInfo] = useState([]);
@@ -35,14 +36,17 @@ const ViewContact = () => {
 
         return (
             <>
-                
-                    <div>{info.first_name}</div>
-                    <div>{info.last_name}</div>
-                    <div>{info.phonenumber}</div>
-                    <div>{info.email}</div>
-                    <div>{info.relationship_status}</div>
-                    <div>{info.latitude}</div>
-                    <div>{info.longitude}</div>
+                <div className="view_contact">
+                    <h3>{info.first_name}</h3>
+                    <h3>{info.last_name}</h3>
+                    <h3>{info.phonenumber}</h3>
+                    <h3>{info.email}</h3>
+                    <h3>{info.relationship_status}</h3>
+                    <h3>{info.latitude}</h3>
+                    <h3>{info.longitude}</h3>
+
+                    </div>
+                    <Link to={"/get_contacts"}className="link">Back</Link>
                 </>
                 );
 }

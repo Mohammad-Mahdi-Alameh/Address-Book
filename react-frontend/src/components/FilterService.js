@@ -68,7 +68,7 @@ const FilterService = ({ contacts, filterBy, filterMethod, filterValue }) => {
   // }, []);
 
 
-  if (filtered.length === 0) {
+  if (contacts.length === 0) {
     return (<>{!loading && <div className="loading"><h1>Loading ...</h1></div>}
       {loading && <div className="loading">You have no contacts yet !</div>}
     </>

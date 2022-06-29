@@ -11,6 +11,7 @@ const ClickMap = () => {
         map.flyTo(e.latlng);
         localStorage.setItem("lat",location.lat);
         localStorage.setItem("lang",location.lng);
+        navigate("/add_contact");
     }})
 
 }

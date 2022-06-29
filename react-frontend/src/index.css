@@ -22,14 +22,13 @@ body {
 }
 .loading{
   width:100%;
-  height:72vh;
+  height:40vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .btn {
-  display: inline-block;
   background: #000;
   color: #fff;
   border: none;
@@ -67,13 +66,14 @@ body {
 }
 .form {
   margin: auto;
+  margin-top: 7vh;
   margin-bottom: 40px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 }
-.form > div{
+.form > div {
   display: flex;
 }
 .form input{
@@ -81,12 +81,14 @@ body {
   height: 7vh;
   padding: 3px 7px;
   font-size: 17px;
+  margin-left:3px;
 }
 .form h4{
   margin-right: 2px;
   margin-left: 2px;
   margin-top: 5px;
 }
+
 /* .form-control {
   margin: auto;
   margin: 20px 0;
@@ -112,6 +114,8 @@ body {
 }
 .link{
   margin-top: 2vh;  
+  display:flex;
+  justify-content: center;
 }
 .form-control label {
   display: block;
@@ -145,6 +149,19 @@ body {
   margin-bottom: 15px;   
   padding: 10px 20px;
   cursor: pointer;
+  border-radius: 4px;
+}
+.view_contact {
+  background: #d9d8d8;
+  width: 50%;
+  text-align: center;
+  transition: transform .2s;
+  margin: auto;
+  margin-top: 20vh;   
+  margin-bottom: 15px;   
+  padding: 10px 20px;
+  border-radius: 4px;
+
 }
 .zoom {
   padding: 50px;
@@ -153,12 +170,7 @@ body {
   height: 200px;
   margin: 0 auto;
 }
-.filter{
-  display: flex;
-}
-.filter input{
-  width:25.5vw;
-}
+
 .contact:hover {
   transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }

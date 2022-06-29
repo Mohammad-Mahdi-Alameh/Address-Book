@@ -229,8 +229,8 @@ const FilterForm = ({contacts}) => {
             <input type={"text"} placeholder={"Enter value "} name={"filterValue"} value={filterValue} onChange={(e) => {
                 setFilterValue(e.target.value);
             }}/></div>
-            <div className="filter"><input type={"submit"} onClick={onFilter} value="Filter" className="btn btn-block" />
-            <input type={"button"} value="Reset" className="btn btn-block" /></div>
+           <input type={"submit"} onClick={onFilter} value="Filter" className="btn btn-block" />
+            <input type={"button"} value="Reset" className="btn btn-block" />
         </form>
 
         }

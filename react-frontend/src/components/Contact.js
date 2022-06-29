@@ -10,10 +10,11 @@ const Contact = ({ contact}) => {
 
     }}
     >
-      <h3>
-        {contact.first_name}{" "} {contact.last_name}
+      <h2>
+        {contact.first_name}{" "} {contact.last_name}<br></br>
         
-      </h3>
+      </h2>
+      <h4>{contact.phonenumber}</h4>
     </div>
   );
 };
