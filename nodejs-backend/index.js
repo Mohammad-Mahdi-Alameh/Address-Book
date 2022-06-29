@@ -15,7 +15,7 @@ mongoose.connect(
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use('/api/user', userRouter);
-app.use('/api/contact', contactRouter);
+app.use('/api/v1/user', userRouter);
+app.use('/api/v1/contact', contactRouter);
 
 app.listen(PORT, () => console.log('Server running'));
